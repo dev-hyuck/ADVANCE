@@ -5,17 +5,17 @@
 ## 🎯 학습 목표
 
 ### ✅ Filter 생성 과정과 흐름 이해하기
-- [x] Filter 생성 구조 이해
-- [x] 요청(Request) / 응답(Response) 흐름 파악
-- [x] OncePerRequestFilter 동작 원리 이해
+- ✅ Filter 생성 구조 이해
+- ✅ 요청(Request) / 응답(Response) 흐름 파악
+- ✅ OncePerRequestFilter 동작 원리 이해
 
 ---
 
 ### ✅ JWT(Json Web Token) 구조와 Spring Boot JWT 인증 구현 이해하기
-- [x] JWT 구조(Header / Payload / Signature) 이해
-- [x] 토큰 생성 과정 이해
-- [x] 토큰 검증 흐름 이해
-- [x] Spring Boot 기반 JWT 인증 흐름 이해
+- ✅ JWT 구조(Header / Payload / Signature) 이해
+- ✅ 토큰 생성 과정 이해
+- ✅ 토큰 검증 흐름 이해
+- ✅ Spring Boot 기반 JWT 인증 흐름 이해
 
 ---
 
