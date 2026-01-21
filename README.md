@@ -1,5 +1,6 @@
 2026 01 21 Spring Advance 과정
-Filter 생성과정과 흐름 이해하기 - [x] 
+Filter 생성과정과 흐름 이해하기 
+- [x] 생성 과정 흐름을 이해 했나?
 
 ## 📝 작업 내용
 - Filter 적용
