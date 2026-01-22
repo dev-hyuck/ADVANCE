@@ -18,9 +18,10 @@ public class UserController {
     private final JwtUtil jwtUtil;
 
     @GetMapping("/get")
-    public String getUserInfo(){
-        log.info("호출");
-        return "호출되었음";
+    public String getUserInfo(HttpServletRequest request) {
+        String username = (String) request.getAttribute("username");
+        log.info(username);
+        return username;
     }
 
     // 로그인 Request에서 id와 비밀번호를 받아 오면 그 username 기반으로 username key 안에 받아서 사용 하겠다.
