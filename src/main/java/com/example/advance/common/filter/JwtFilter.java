@@ -8,10 +8,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @Component
@@ -58,9 +62,13 @@ public class JwtFilter extends OncePerRequestFilter {
         // username을 꺼내긴 했는데 어떻게 사용하는게 좋을까?
         // 여기서 나오는게 바로 HttpServletRequest가 등장한다!
 
-        request.setAttribute("username", username);
-        //  불러오긴 했는데 이걸 컨트롤러에 쓰는 방법을 좀 알아야겠지?
+        // equest.setAttribute("username", username); -> 방식을 이제 바꿔 보자
+        // Spring Security 방식에 맞게 바꿀거임
+        User user = new User(username, "", List.of());
+        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities()));
 
         filterChain.doFilter(request,response);
+
+
     }
 }
