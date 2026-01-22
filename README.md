@@ -29,30 +29,48 @@
 
 ---
 
-## 📝 작업 내용
+### ✅ Spring Security 인증 구조 이해
+- ✅ Authentication 객체 이해
+- ✅ SecurityContextHolder 역할 이해
+- ✅ Filter → Security 흐름 파악
+- ✅ 인증(Authentication) / 인가(Authorization) 흐름 구분
+---
 
+## 📝 작업 내용
+---
 - Filter 적용
   - OncePerRequestFilter 기반 필터 구현
   - 요청 진입 전 / 응답 반환 후 흐름 확인
-
+---
 - JWT 인증 방식 구현
   - SecretKey 초기화
   - Access Token 발급
   - 토큰 유효성 검증
   - Claims 정보 추출
-
+---
 - 로그인 구현
   - 로그인 성공 시 JWT 토큰 발급
   - 클라이언트에 Access Token 전달
   - Authorization Header 기반 인증 구조 설계
-
+---
 - Token 결과 인증
   - Authorization Header 존재 여부 검증
   - Bearer Token 형식 검증
   - JWT 토큰 유효성 검사
   - 인증 실패 시 요청 차단
   - Postman을 통한 인증 테스트 수행
-
+---
+- JWT 인증 방식 구현
+  - SecretKey 초기화
+  - Access Token 발급 로직 구현
+  - JWT 서명(Signature) 생성
+  - 토큰 만료 시간(exp) 설정
+  - Claims 정보 추출 기능 구현
+ 
+- 로그인 구현
+  - 로그인 성공 시 JWT Access Token 발급
+  - 토큰을 Response Body로 클라이언트에 전달
+  - Stateless 인증 구조 설계
 ---
 
 ## 🔗 관련 이슈
