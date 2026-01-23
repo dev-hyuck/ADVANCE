@@ -36,6 +36,13 @@
 - ✅ 인증(Authentication) / 인가(Authorization) 흐름 구분
 ---
 
+### ✅ Filter 생성 과정과 흐름 이해하기
+- ✅ Filter 생성 구조 이해
+- ✅ 요청(Request) / 응답(Response) 흐름 파악
+- ✅ OncePerRequestFilter 동작 원리 이해
+- ✅ Filter 실행 순서 (@Order) 이해
+- ✅ Controller 이전 단계 처리 구조 이해
+
 ## 📝 작업 내용
 ---
 - Filter 적용
@@ -71,6 +78,37 @@
   - 로그인 성공 시 JWT Access Token 발급
   - 토큰을 Response Body로 클라이언트에 전달
   - Stateless 인증 구조 설계
+---
+- Spring Security 연동
+  - 기본 Security 설정 비활성화
+  - FormLogin 비활성화
+  - HttpBasic 비활성화
+  - CSRF 비활성화
+  - JWT Filter 등록
+  - .addFilterBefore(jwtFilter, SecurityContextHolderAwareRequestFilter.class)
+  - 인증 성공 시 SecurityContextHolder 저장
+  - 이후 인가 과정은 Spring Security가 자동 처리
+
+---
+
+🧩 전체 인증 · 인가 흐름
+
+Client Request
+↓
+AdvanceFilter / JwtFilter
+↓
+JWT 토큰 검증
+↓
+UserDetails 조회
+↓
+Authentication 객체 생성
+↓
+SecurityContextHolder 저장
+↓
+Spring Security 인가 처리
+↓
+Controller 접근
+
 ---
 
 ## 🔗 관련 이슈
