@@ -1,5 +1,6 @@
 package com.example.advance.common.utils;
 
+import com.example.advance.common.enums.UserRoleEnum;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.JwtParser;
@@ -47,10 +48,11 @@ public class JwtUtil {
     // username이란 값을 넣어 준다. 다른 값 추가도 가능 예시로 추가
     // '발행 시간' issuedAt(now)
     // '만료 시간' .expiration(new Date(now.getTime() + TOKEN_TIME))
-    public String generateToken(String username) {
+    public String generateToken(String username, UserRoleEnum role) {
         Date now = new Date();
         return BEARER_PREFIX + Jwts.builder()
                 .claim("username", username)
+                .claim("auth", role)
                 .issuedAt(now) // 발행 시간
                 .expiration(new Date(now.getTime() + TOKEN_TIME)) // 만료 시간
                 .signWith(key, Jwts.SIG.HS256)
@@ -77,6 +79,10 @@ public class JwtUtil {
 
     public String extractUsername(String token) {
         return extractAllClaims(token).get("username", String.class);
+    }
+
+    public String extractRole(String token) {
+        return extractAllClaims(token).get("auth", String.class);
     }
 
 

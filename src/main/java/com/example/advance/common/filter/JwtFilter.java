@@ -1,5 +1,6 @@
 package com.example.advance.common.filter;
 
+import com.example.advance.common.enums.UserRoleEnum;
 import com.example.advance.common.utils.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -32,7 +33,7 @@ public class JwtFilter extends OncePerRequestFilter {
         String requestURL = request.getRequestURI();
 
         // ' 로그인은 토큰 검사 제외 '
-        if(requestURL.equals("/api/user/login")){
+        if(requestURL.equals("/api/login")) {
             filterChain.doFilter(request,response);
             return;
         }
@@ -59,12 +60,17 @@ public class JwtFilter extends OncePerRequestFilter {
 
         // 만약에 유효해 그럼 어떤 정보를 가지고 있어 ?
         String username = jwtUtil.extractUsername(jwt);
+
+        String auth = jwtUtil.extractRole(jwt);
+
+        UserRoleEnum userRoleEnum = UserRoleEnum.valueOf(auth); // --> UserRoleEnum
         // username을 꺼내긴 했는데 어떻게 사용하는게 좋을까?
         // 여기서 나오는게 바로 HttpServletRequest가 등장한다!
 
         // equest.setAttribute("username", username); -> 방식을 이제 바꿔 보자
         // Spring Security 방식에 맞게 바꿀거임
-        User user = new User(username, "", List.of());
+        User user = new User(username, "", List.of(userRoleEnum :: getRole));
+
         SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities()));
 
         filterChain.doFilter(request,response);

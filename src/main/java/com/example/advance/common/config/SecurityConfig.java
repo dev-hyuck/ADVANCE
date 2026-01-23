@@ -34,9 +34,10 @@ public class SecurityConfig {
                     .formLogin(AbstractHttpConfigurer::disable) // UsernamePasswordAuthenticationFilter, DefaultLoginPageGeneratingFilter 비활성화
                     .addFilterBefore(jwtFilter, SecurityContextHolderAwareRequestFilter.class)
                     .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/user/login").permitAll()
-                        .requestMatchers("/api/user/get").permitAll()
-                        .requestMatchers("/api/user/username").permitAll()
+                        .requestMatchers("/api/login").permitAll() // 이건 선호 방식
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/normal/**").hasRole("NORMAL")
+                        .anyRequest().authenticated()
                     )
                     .build();
         }
