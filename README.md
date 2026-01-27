@@ -95,25 +95,45 @@
   - 사용자 소유권(Owner) 검증
   - Spring Security + Interceptor 흐름 이해
   - 403 Forbidden 발생 원인 분석 및 해결
+ 
+---
+- AOP(Aspect Oriented Programming) 개념 이해
+  - 횡단 관심사(Cross Cutting Concern) 분리
+  - @Aspect, @Around 동작 구조 이해
+  - Filter / Interceptor / AOP 실행 순서 파악
+  - 서비스 레이어 실행 시간 측정 AOP 구현
 
 🧩 전체 인증 · 인가 흐름
 
-Client Request
-↓
-AdvanceFilter / JwtFilter
-↓
-JWT 토큰 검증
-↓
-UserDetails 조회
-↓
-Authentication 객체 생성
-↓
-SecurityContextHolder 저장
-↓
-Spring Security 인가 처리
-↓
-Controller 접근
+요청 발생
+ ↓
+JwtFilter (인증 / 인가)
+ ↓
+OwnerCheckInterceptor (소유자 검증)
+ ↓
+Controller
+ ↓
+AOP (실행 전)
+ ↓
+Service 메서드 실행
+ ↓
+AOP (실행 후)
+ ↓
+Controller return
+ ↓
+JwtFilter (응답 후)
+ ↓
+Postman 응답 반환
 
+---
+1️⃣ JwtFilter 인증 성공
+2️⃣ Interceptor 소유자 검사
+3️⃣ Controller 진입
+4️⃣ AOP 실행 전
+5️⃣ Service 메서드 실행
+6️⃣ AOP 실행 후
+7️⃣ Controller 종료
+8️⃣ JwtFilter 응답 전달
 ---
 
 ## 🔗 관련 이슈
