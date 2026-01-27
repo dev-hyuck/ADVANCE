@@ -90,6 +90,11 @@
   - 이후 인가 과정은 Spring Security가 자동 처리
 
 ---
+- Interceptor 구현 
+  - JWT 인증 기반 사용자 정보 수정
+  - 사용자 소유권(Owner) 검증
+  - Spring Security + Interceptor 흐름 이해
+  - 403 Forbidden 발생 원인 분석 및 해결
 
 🧩 전체 인증 · 인가 흐름
 
