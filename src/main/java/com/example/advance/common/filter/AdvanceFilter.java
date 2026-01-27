@@ -16,12 +16,12 @@ public class AdvanceFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         // 요청이 들어올 때 실행되는 부분
-        System.out.println(" AdvanceFilter 필터로 들어감");
+ //       System.out.println(" AdvanceFilter 필터로 들어감");
 
         filterChain.doFilter(request, response);
 
         // 요청이 나갈 때 실행되는 부분
-        System.out.println(" AdvanceFilter 필터로 나감 ");
+//        System.out.println(" AdvanceFilter 필터로 나감 ");
 
     }
 }

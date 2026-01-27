@@ -65,7 +65,12 @@ public class UserController {
             @PathVariable String username,
             @RequestBody UpdateUserEmailRequest request
     ){
+        log.info("세번째 : interceptor를 통과후 Controller 로직 수행 ");
+
         userService.updateUserEmail(username, request.getEmail());
+
+        log.info("7번째 : contoroller 수행 완료 ");
+
         return ResponseEntity.ok("수정 완료");
     }
 

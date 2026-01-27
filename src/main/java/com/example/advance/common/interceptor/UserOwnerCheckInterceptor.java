@@ -46,6 +46,7 @@ public class UserOwnerCheckInterceptor implements HandlerInterceptor {
 
         log.info("currentUsername='{}' length={}", currentUsername, currentUsername.length());
         log.info("pathUsername='{}' length={}", username, username.length());
+        log.info(" 2번째 : interceptor controller 들어가기 전 마지막 권한 검사 실행");
         return true;
         // 5. 만약에 일치하지 않으면 -> controller 접근을 막아주면 된다.
         // 일치하는 경우 접근 허용
