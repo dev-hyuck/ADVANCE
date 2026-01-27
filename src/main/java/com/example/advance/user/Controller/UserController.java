@@ -2,7 +2,9 @@ package com.example.advance.user.Controller;
 
 import com.example.advance.common.utils.JwtUtil;
 import com.example.advance.user.model.request.LoginRequest;
+import com.example.advance.user.model.request.UpdateUserEmailRequest;
 import com.example.advance.user.model.response.LoginResponse;
+import com.example.advance.user.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final JwtUtil jwtUtil;
+    private final UserService userService;
 
     @PreAuthorize("hasRole('ADMIN')") // ADMIN 권한이 있는 친구만 접속 가능하도록 하는 어노테이션
     @GetMapping("/get")
@@ -56,4 +59,15 @@ public class UserController {
         String username = jwtUtil.extractUsername(jwt);
         return ResponseEntity.ok(username);
     }
+
+    @PutMapping("/{username}/email")
+    public ResponseEntity<String> updateEmail(
+            @PathVariable String username,
+            @RequestBody UpdateUserEmailRequest request
+    ){
+        userService.updateUserEmail(username, request.getEmail());
+        return ResponseEntity.ok("수정 완료");
+    }
+
+
 }

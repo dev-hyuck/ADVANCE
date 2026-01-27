@@ -37,6 +37,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/login").permitAll() // 이건 선호 방식
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/normal/**").hasRole("NORMAL")
+                        .requestMatchers("/api/user/**").authenticated()
                         .anyRequest().authenticated()
                     )
                     .build();

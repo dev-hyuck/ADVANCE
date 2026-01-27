@@ -26,7 +26,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private UserRoleEnum roleEnum;
 
 
@@ -35,6 +35,10 @@ public class User {
         this.password = password;
         this.email = email;
         this.roleEnum = roleEnum;
+    }
+
+    public void updateEmail(String email) {
+        this.email = email;
     }
 
 }
